@@ -83,6 +83,11 @@ export default {
         });
     }
   },
+  watch:{
+    '$route'(to,from){
+      this.getArticalData()
+    }
+  },
   beforeMount() {
     this.isloading = true;
     this.getArticalData();
@@ -100,7 +105,7 @@ export default {
   margin-top: 10px;
 }
 .artical {
-  width: 90%;
+  width: 73%;
 }
 .article:not(:first-child) {
   margin-right: 340px;

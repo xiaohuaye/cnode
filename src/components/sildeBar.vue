@@ -1,20 +1,21 @@
 <template>
-  <div class="userinfo">
-    <div class="loading" v-if="isloading">
+  <div class="sildeBar">
+     <div class="loading" v-if="isloading">
       <!-- 数据未返回时显示 -->
-      <img src="../assets/loading.gif">
     </div>
-    <div v-else class="user-ind">
-      <ul class="ul-plate">
+    <div v-else>
+    <ul class="ul-plate">
         <li>
-          <router-link to="/">
-            <span>主页</span>
-          </router-link>
+            <span>作者</span>
         </li>
         <li class="base">
-          <div>
-            <img :src="useinfo.avatar_url">
-            <span>{{useinfo.loginname}}</span>
+          <div class="base-info">
+            <router-link :to="{name:'userinfo',params:{
+              username:useinfo.loginname
+            }}">
+              <img :src="useinfo.avatar_url">
+              <span>{{useinfo.loginname}}</span>
+            </router-link>
           </div>
           <div>{{useinfo.score}}积分</div>
           <div class="github">
@@ -23,35 +24,33 @@
             </svg>
              @{{useinfo.githubUsername}}
           </div>
-          <div class="data">注册时间{{useinfo.create_at | dataset}}</div>
+          <div class="data">注册时间{{useinfo.create_at| dataset }}</div>
         </li>
       </ul>
       <ul class="ul-plate">
         <li>
           <span>最近创建的话题</span>
         </li>
-        <li v-for="(topic,index) in useinfo.recent_topics" :key="index">
-          <img :src="topic.author.avatar_url">
+        <li v-for="(topic,index) in limitfive" :key="index">
           <router-link :to="{name:'artical',params:{
-            id:topic.id
+            id:topic.id,
+            name:topic.author.loginname
           }}">
             <span class="title">{{topic.title}}</span>
           </router-link>
-          <span class="data">最后回复{{topic.last_reply_at|dataset}}</span>
         </li>
       </ul>
       <ul class="ul-plate">
         <li>
           <span>最近参与的话题</span>
         </li>
-        <li v-for="(topic,index) in useinfo.recent_replies" :key="index">
-          <img :src="topic.author.avatar_url">
+        <li v-for="(topic,index) in limitfive1" :key="index">
           <router-link :to="{name:'artical',params:{
-            id:topic.id
+            id:topic.id,
+            name:topic.author.loginname
           }}">
             <span class="title">{{topic.title}}</span>
           </router-link>
-          <span class="data">最近回复{{topic.last_reply_at | dataset}}</span>
         </li>
       </ul>
     </div>
@@ -60,17 +59,16 @@
 
 <script>
 export default {
-  name: "userinfo",
-  data() {
+  name: 'sildeBar',
+  data(){
     return {
-      isloading: true,
-      useinfo: []
-    };
+      isloading:true,
+      useinfo:[],
+    }
   },
   methods: {
     getDataUse() {
-      this.$http
-        .get(`https://cnodejs.org/api/v1/user/${this.$route.params.username}`)
+      this.$http.get(`https://cnodejs.org/api/v1/user/${this.$route.params.name}`)
         .then(res => {
           this.isloading = false;
           this.useinfo = res.data.data;
@@ -80,18 +78,39 @@ export default {
         });
     }
   },
+  computed:{
+    limitfive(){
+      if(this.useinfo.recent_topics){
+        return this.useinfo.recent_topics.slice(0,5)
+      }
+    },
+    limitfive1(){
+      if(this.useinfo.recent_replies){
+        return this.useinfo.recent_replies.slice(0,5)
+      }
+    },
+  },
   beforeMount() {
     this.isloading = true;
     this.getDataUse();
   }
-};
+}
 </script>;
 
 <style scoped>
+.sildeBar{
+  width: 290px;
+  float: right;
+}
+.base-info>a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .ul-plate {
   background-color: #ffffff;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .ul-plate li:first-child {
   background-color: #f6f6f6;
@@ -105,11 +124,15 @@ export default {
   border-radius: 5px;
 }
 .ul-plate a {
+  line-height: 60px;
   color:#0088CC;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .ul-plate span {
   margin-left: 8px;
-  font-size: 16px;
+  font-size: 14px;
 }
 .ul-plate li {
   display: flex;

@@ -23,7 +23,7 @@
             </span>
             <router-link :to="{
               name:'artical', 
-              params:{id:post.id}
+              params:{id:post.id,name:post.author.loginname}
               }">
               <span class="title">{{post.title}}</span>
             </router-link>
@@ -48,12 +48,13 @@ export default {
   methods:{
     getData(){
       this.$http.get('https://cnodejs.org/api/v1/topics',{
-        page: 1,
-        limit: 20,
+        params:{
+          page: 1,
+          limit: 20,
+        }
       })
       .then((res)=>{
         this.isloading = false
-        console.log(res)
         this.posts = res.data.data
         
       })

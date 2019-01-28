@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import PostList from '../components/PostList'
 import Artical from '../components/Artical'
 import UserInfo from '../components/UserInfo';
+import sildeBar from '../components/sildeBar'
 
 Vue.use(Router)
 
@@ -17,9 +18,10 @@ export default new Router({
     },
     {
       name:'artical',
-      path:'/topic/:id',
+      path:'/topic/:id/:name',
       components:{
-        main:Artical
+        main:Artical,
+        sildebar:sildeBar
       }
     },
     {
