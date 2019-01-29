@@ -24,7 +24,7 @@ export default {
       PagenumberInit:[1,2,3,4,5],
       currentPage:1,
       firstPage: false,
-      currentIndex:0
+      currentIndex:0,
     }
   },
   methods:{

@@ -1,6 +1,8 @@
 <template>
   <div class="header">
-    <img src="../assets/cnodejs_light.svg">
+    <router-link to="/">
+      <img src="../assets/cnodejs_light.svg">
+    </router-link>
   </div>
 </template>;
 
