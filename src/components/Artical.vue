@@ -85,6 +85,7 @@ export default {
   },
   watch:{
     '$route'(to,from){
+      this.isloading = true;
       this.getArticalData()
     }
   },
