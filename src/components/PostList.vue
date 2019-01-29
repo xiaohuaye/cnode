@@ -103,6 +103,9 @@ export default {
 </script>;
 
 <style scoped>
+.PostList{
+  flex:1;
+}
 .post-list-wrapper li {
   display: flex;
   align-items: center;

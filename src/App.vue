@@ -2,8 +2,8 @@
   <div id="app">
     <Header></Header>
     <div class="main">
+      <router-view name="main" key="main"></router-view>
       <router-view name="sildebar"></router-view>
-      <router-view name="main"></router-view>
     </div>
   </div>
 </template>
@@ -45,5 +45,7 @@ export default {
   }
   .main{
      margin: 15px 64px;
+     display: flex;
+     justify-content: space-between;
   }
 </style>

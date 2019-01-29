@@ -100,7 +100,7 @@ export default {
 <style scoped>
 .sildeBar{
   width: 290px;
-  float: right;
+  margin-left: 10px;
 }
 .base-info>a{
   display: flex;

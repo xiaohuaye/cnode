@@ -96,8 +96,7 @@ export default {
 };
 </script>;
 
-<style >
-
+<style scoped>
 .topbar {
   padding: 10px;
   background-color: #f6f6f6;
@@ -194,6 +193,9 @@ export default {
 .markdown-text img {
   width: 92% !important;
 }
+.zan{
+  background-color: green;
+}
 .zan>span{
   float: right;
 }
@@ -207,5 +209,7 @@ export default {
 a{
   word-wrap: break-word;
 }
-@import url("../assets/markdown-github.css");
 </style>;
+<style>
+@import url("../assets/markdown-github.css");
+</style>
