@@ -85,6 +85,7 @@ export default {
   },
   watch:{
     '$route'(to,from){
+      this.isloading = true;
       this.getArticalData()
     }
   },
@@ -202,6 +203,9 @@ export default {
 .base>li{
   font-size: 12px;
   color: #9D9D9D;
+}
+a{
+  word-wrap: break-word;
 }
 @import url("../assets/markdown-github.css");
 </style>;
