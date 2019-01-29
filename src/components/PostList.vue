@@ -1,10 +1,10 @@
-<template>
-  <div class="PostList">
+<template >
+  <div class="PostList" >
     <div class="loading" v-if="isloading">
       <!-- 数据未返回时显示 -->
       <img src="../assets/loading.gif" > 
     </div>
-    <div class="post-list-wrapper">
+    <div class="post-list-wrapper" v-else>
       <ul>
         <li class="topbar">
           <span>全部</span>
@@ -13,7 +13,7 @@
           <span>问答</span>
           <span>招聘</span>
         </li>
-        <li class=".clearfix" v-for="(post,index) in posts" :key="index">
+        <li class=".clearfix" v-for="(post,index) in posts" :key="index" >
           <div>
             <img :src="post.author.avatar_url">
             <span v-text="post.reply_count" class="reply_count"></span>
@@ -32,24 +32,27 @@
         </li>
       </ul>
     </div>
+    <Pageination @sentPage="changPage"/>
   </div>
 </template>;
 
-<script >
+<script>
+import Pageination from './Pageination'
 export default {
   name: 'PostList',
   data(){
     return {
       isloading: true,
       posts : [],
-      share: 'share'
+      share: 'share',
+      getPage: 1
     }
   },
   methods:{
     getData(){
       this.$http.get('https://cnodejs.org/api/v1/topics',{
         params:{
-          page: 1,
+          page: this.getPage,
           limit: 20,
         }
       })
@@ -62,12 +65,20 @@ export default {
         console.log(error)
       }
       )
+    },
+    changPage(value){
+      this.isloading = true
+      this.getPage = value
+      this.getData()
     }
   },
   beforeMount(){
     this.isloading = true
     this.getData()
-  },   
+  },
+  components:{
+    Pageination
+  }   
 }
 </script>;
 
