@@ -108,7 +108,9 @@ export default {
 .PostList {
   flex: 1;
 }
-
+.topbar span{
+  cursor: pointer;
+}
 .post-list-wrapper li {
   display: flex;
   align-items: center;

@@ -2,7 +2,9 @@
   <div class="userinfo">
     <div class="loading" v-if="isloading">
       <!-- 数据未返回时显示 -->
-      <img src="../assets/loading.gif">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-loading"></use>
+      </svg>
     </div>
     <div v-else class="user-ind">
       <ul class="ul-plate">
