@@ -2,7 +2,9 @@
   <div class="PostList">
     <div class="loading" v-if="isloading">
       <!-- 数据未返回时显示 -->
-      <img src="../assets/loading.gif">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-loading"></use>
+      </svg>
     </div>
     <div class="post-list-wrapper" v-else>
       <ul>
@@ -31,7 +33,7 @@
         </li>
       </ul>
     </div>
-    <Pageination @sentPage="changPage"/>
+    <Pageination v-show="!isloading" @sentPage="changPage"/>
   </div>
 </template>;
 
@@ -45,8 +47,8 @@ export default {
       posts: [],
       share: "share",
       getPage: 1,
-      tab: '',
-      btnActive: 'all'
+      tab: "",
+      btnActive: "all"
     };
   },
   methods: {
@@ -56,7 +58,7 @@ export default {
           params: {
             page: this.getPage,
             limit: 20,
-            tab: this.tab,
+            tab: this.tab
           }
         })
         .then(res => {
@@ -74,20 +76,20 @@ export default {
     },
     changeData(value) {
       this.isloading = true;
-      this.getPage = 1
-      this.$children[0].getFirstPage()
+      this.getPage = 1;
+      this.$children[0].getFirstPage();
       if (value === "all") {
-        this.tab = ''
-        this.btnActive = 'all'
+        this.tab = "";
+        this.btnActive = "all";
       } else if (value === "good") {
-        this.tab = ''
-        this.btnActive = 'good'
+        this.tab = "";
+        this.btnActive = "good";
       } else if (value === "share") {
-        this.tab = value
-        this.btnActive = 'share'
+        this.tab = value;
+        this.btnActive = "share";
       } else if (value === "ask") {
-        this.tab = value
-        this.btnActive = 'ask'
+        this.tab = value;
+        this.btnActive = "ask";
       }
       this.getData();
     }
@@ -103,9 +105,10 @@ export default {
 </script>;
 
 <style scoped>
-.PostList{
-  flex:1;
+.PostList {
+  flex: 1;
 }
+
 .post-list-wrapper li {
   display: flex;
   align-items: center;
@@ -174,7 +177,7 @@ img {
   background-color: #80bd01;
   color: white;
 }
-.title{
+.title {
   width: 650px;
 }
 </style>;

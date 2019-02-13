@@ -2,7 +2,9 @@
   <div class="artical">
     <div class="loading" v-if="isloading">
       <!-- 数据未返回时显示 -->
-      <img src="../assets/loading.gif">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-loading"></use>
+      </svg>
     </div>
     <div v-else>
       <div class="topic_header">
@@ -95,6 +97,15 @@ export default {
   }
 };
 </script>;
+
+<style>
+@import url("../assets/markdown-github.css");
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+</style>
 
 <style scoped>
 .topbar {
@@ -190,9 +201,7 @@ export default {
 .topic_content p{
   margin: 10px 10px;
 }
-.markdown-text img {
-  width: 92% !important;
-}
+
 .zan{
   background-color: green;
 }
@@ -209,7 +218,6 @@ export default {
 a{
   word-wrap: break-word;
 }
-</style>;
-<style>
-@import url("../assets/markdown-github.css");
 </style>
+
+

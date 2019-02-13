@@ -48,4 +48,27 @@ export default {
      display: flex;
      justify-content: space-between;
   }
+  .loading {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading .icon {
+  width: 50px;
+  height: 50px;
+  animation: 1s rotate infinite linear;
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>

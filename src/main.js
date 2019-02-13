@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Axios from 'axios'
-import './commont/icon/font_1033391_p1m1j8fvicl/iconfont'
+import './commont/icon/font_1033391_bpdo2gvn8c/iconfont'
+
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios
