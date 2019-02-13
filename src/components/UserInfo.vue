@@ -35,7 +35,8 @@
         <li v-for="(topic,index) in useinfo.recent_topics" :key="index">
           <img :src="topic.author.avatar_url">
           <router-link :to="{name:'artical',params:{
-            id:topic.id
+            id:topic.id,
+            name:topic.author.loginname
           }}">
             <span class="title">{{topic.title}}</span>
           </router-link>
@@ -49,7 +50,8 @@
         <li v-for="(topic,index) in useinfo.recent_replies" :key="index">
           <img :src="topic.author.avatar_url">
           <router-link :to="{name:'artical',params:{
-            id:topic.id
+            id:topic.id,
+            name:topic.author.loginname
           }}">
             <span class="title">{{topic.title}}</span>
           </router-link>
